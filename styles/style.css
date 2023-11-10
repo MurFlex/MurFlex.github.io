@@ -5,7 +5,7 @@
 
 .header {
 	display: flex;
-	padding: 16px 3px 16px 24px;
+	padding: 16px 20px 16px 24px;
 	align-items: center;
 	gap: 32px;
 	align-self: stretch;
@@ -22,7 +22,7 @@
 	background: none;
 	border-radius: 8px;
 	border: 1px solid rgba(255, 255, 255, 0.45);
-	padding: 12px 10px;
+	padding: 11px 9px 8px 9px;
 }
 
 .header__logo {
@@ -77,7 +77,7 @@
 .header__search-icon {
 	width: 24px;
 	height: 24px;
-	opacity: 0.4;
+	opacity: 1;
 	cursor: pointer;
 }
 
@@ -89,13 +89,14 @@
 .header__user-list {
 	display: flex;
 	justify-content: center;
-	align-items: flex-end;
+	align-items: center;
 	gap: 40px;
 	list-style-type: none;
 }
 
 .header__user-item {
 	position: relative;
+	width: 56px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -125,6 +126,7 @@
 .user-item__icon {
 	width: 28px;
 	height: 28px;
+	margin-bottom: 7px;
 }
 
 .user-item__text {
@@ -145,6 +147,17 @@
 	flex: 1 0 0;
 	background-color: #fff;
 	border-radius: 24px;
+	padding: 22px 24px;
+}
+
+.content__title {
+	font-family: Segoe UI;
+	font-size: 28px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 36px;
+	letter-spacing: -0.28px;
+	margin-top: 10px;
 }
 
 .footer {
