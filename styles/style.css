@@ -10,7 +10,6 @@
 	align-items: center;
 	gap: 32px;
 	align-self: stretch;
-	background-color: #6725a8;
 }
 
 .header__navigation {
@@ -105,7 +104,9 @@
 
 .user-item__icon_notification::before {
 	content: '3';
-	display: inline-block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 16px;
 	height: 16px;
 	position: absolute;
@@ -148,6 +149,8 @@
 }
 
 .content {
+	display: flex;
+	gap: 32px;
 	flex: 1 0 0;
 	background-color: #fff;
 	border-radius: 24px;
@@ -155,7 +158,7 @@
 }
 
 .content__cart {
-	max-width: 66%;
+	flex: 1 0 0;
 }
 
 .content__title {
@@ -165,14 +168,14 @@
 	font-weight: 700;
 	line-height: 36px;
 	letter-spacing: -0.28px;
-	margin-top: 17px;
-	margin-bottom: 27px;
+	margin-top: 18px;
+	margin-bottom: 25px;
 }
 
 .content__select-all {
 	display: flex;
 	gap: 11px;
-	padding-bottom: 16px;
+	padding-bottom: 17px;
 	border-bottom: 1px solid lightgray;
 }
 
@@ -183,14 +186,26 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 24px;
+	display: flex;
+	align-items: center;
 }
 
 .checkbox {
-	opacity: 0;
-	position: absolute;
+	appearance: none;
+	margin: 0;
 }
 
-.checkbox:checked + label::before {
+.checkbox::after {
+	display: block;
+	content: '';
+	cursor: pointer;
+	width: 22px;
+	height: 22px;
+	border-radius: 7px;
+	border: 0.05em solid #cb11ab;
+}
+
+.checkbox:checked::after {
 	content: url(../images/cart/checkbox.svg);
 	color: #fff;
 	background-color: #cb11ab;
@@ -204,19 +219,201 @@
 	cursor: pointer;
 }
 
-.content__select-text::before {
-	content: '';
-	cursor: pointer;
-	width: 22px;
-	height: 22px;
-	border-radius: 7px;
-	margin-right: 0.5em;
-	border: 0.05em solid #cb11ab;
-}
-
 .content__sorting-button {
 	width: 20px;
 	height: 20px;
+}
+
+.content__products {
+	margin-top: 3px;
+	margin-bottom: 40px;
+}
+
+.content__product {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.product__image {
+	width: 72px;
+	height: 96px;
+	border-radius: 8px;
+}
+
+.content__product-info {
+	display: flex;
+	flex: 1 0 0;
+	gap: 16px;
+}
+
+.product__description {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.product__name {
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.location {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.product__location,
+.product__vendor {
+	color: #9797af;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.product__vendor {
+	display: flex;
+	align-items: center;
+}
+
+.product__vendor::after {
+	content: url('../images/products/hint-icon.svg');
+	width: 20px;
+	height: 20px;
+	margin-left: 6px;
+}
+
+.product__variations {
+	display: flex;
+	gap: 16px;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.product__actions {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.product__amount-actions {
+	width: 100px;
+	padding: 10px 3px;
+	display: flex;
+	justify-content: center;
+}
+
+.product__button {
+	border: 0;
+	padding: 2px 7px 6px 8px;
+	background: none;
+
+	text-align: center;
+	color: rgba(0, 0, 0, 0.2);
+	font-family: Segoe UI;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: -0.2px;
+}
+
+.product__button_active {
+	color: #000;
+}
+
+.product__amount {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1 0 0;
+
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.product__left {
+	color: #ff3b30;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.product__actions-list {
+	list-style-type: none;
+	display: flex;
+	justify-content: end;
+}
+
+.product__action-image {
+	width: 20px;
+	height: 20px;
+}
+
+.content__price {
+	width: 110px;
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	align-self: stretch;
+}
+
+.product__current-price,
+.product__old-price {
+	text-align: right;
+	font-family: Segoe UI;
+	font-style: normal;
+}
+
+.product__current-price {
+	color: #000;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 28px;
+	letter-spacing: -0.2px;
+}
+
+.product__old-price {
+	position: relative;
+	color: #9797af;
+	font-size: 13px;
+	line-height: 16px;
+	border-bottom: 1px dashed #9797af;
+}
+
+.product__old-price::before {
+	content: '';
+	position: absolute;
+	top: 15px;
+	width: 100%;
+	height: 1px;
+	background-color: #9797af;
+}
+
+.currency {
+	font-size: 16px;
+	font-style: normal;
+	line-height: 24px;
+}
+
+.result {
+	width: 429px;
+	padding: 16px 24px 24px 24px;
 }
 
 .footer {
