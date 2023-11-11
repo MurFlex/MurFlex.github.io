@@ -225,6 +225,9 @@
 }
 
 .content__products {
+	display: flex;
+	flex-direction: column;
+	gap: 23px;
 	margin-top: 3px;
 	margin-bottom: 40px;
 }
@@ -247,6 +250,13 @@
 	gap: 16px;
 }
 
+.product__image-with-selector {
+	height: 96px;
+	display: flex;
+	align-items: center;
+	gap: 11px;
+}
+
 .product__description {
 	display: flex;
 	flex-direction: column;
@@ -254,6 +264,7 @@
 }
 
 .product__name {
+	max-width: 275px;
 	font-family: Segoe UI;
 	font-size: 16px;
 	font-style: normal;
@@ -364,6 +375,10 @@
 	height: 20px;
 }
 
+.product__actions {
+	align-self: start;
+}
+
 .content__price {
 	width: 110px;
 	gap: 4px;
@@ -379,6 +394,7 @@
 	text-align: right;
 	font-family: Segoe UI;
 	font-style: normal;
+	text-wrap: nowrap;
 }
 
 .product__current-price {
@@ -387,6 +403,10 @@
 	font-weight: 700;
 	line-height: 28px;
 	letter-spacing: -0.2px;
+}
+
+.product__current-price_big {
+	font-size: 16px;
 }
 
 .product__current-price > .currency {
