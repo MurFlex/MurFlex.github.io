@@ -203,13 +203,14 @@
 	width: 22px;
 	height: 22px;
 	border-radius: 7px;
-	border: 0.05em solid #cb11ab;
+	border: 0.05em solid #00000033;
 }
 
 .checkbox:checked::after {
 	content: url(../images/cart/checkbox.svg);
 	color: #fff;
 	background-color: #cb11ab;
+	border: 0.05em solid #cb11ab;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -526,10 +527,18 @@
 	height: 20px;
 }
 
+.order__finish {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
 .order__confirm {
+	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	min-height: 44px;
 	padding: 0px 32px 5px 32px;
 	gap: 24px;
 	background-color: #cb11ab;
@@ -537,9 +546,10 @@
 	border: 0;
 	color: #fff;
 	text-align: center;
+	font-family: Segoe UI;
+	font-size: 16px;
 	font-weight: 700;
 	line-height: 24px;
-	min-height: 44px;
 }
 
 .delivery__address {
@@ -582,6 +592,79 @@
 	text-decoration-style: dashed;
 	text-underline-offset: 1px;
 	text-decoration-color: rgba(12, 180, 119, 0.2);
+}
+
+.payment {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.payment__method {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.payment__card-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.payment__bank-icon {
+	width: 30px;
+	height: 9.333px;
+}
+
+.payment__card-number {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.payment__instant-apply {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto auto;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 8px 8px 12px 8px;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.payment__instant-hint {
+	grid-column: 1/3;
+}
+
+.order__usage-apply {
+	display: flex;
+	gap: 8px;
+}
+
+.order__usage-apply-image {
+	width: 13px;
+	height: 24px;
+}
+
+.order__usage-apply-text {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.order__usage-apply-text > a {
+	text-underline-offset: 3px;
+	text-decoration-color: rgba(0, 0, 0, 0.1);
 }
 
 .footer {

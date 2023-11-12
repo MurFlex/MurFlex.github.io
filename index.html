@@ -234,8 +234,7 @@
           </div>
         </div>
       </div>
-      <div class="sidebar">
-        <!-- Почему-то ниже макета -->
+      <aside class="sidebar">
         <div class="order">
           <div class="order__result">
             <h2 class="order__total">
@@ -296,19 +295,39 @@
           </div>
 
           <div class="payment">
-            <div class="order__detail">
-              <h3 class="order__detail-title">
-                Оплата картой
-              </h3>
-              <img src="images/order/edit-icon.svg" alt="edit" class="order__detail-img">
+            <div class="payment__method">
+              <div class="order__detail">
+                <h3 class="order__detail-title">
+                  Оплата картой
+                </h3>
+                <img src="images/order/edit-icon.svg" alt="edit" class="order__detail-img">
+              </div>
+              <div class="payment__card-info">
+                <img src="images/order/mir.svg" alt="mir" class="payment__bank-icon">
+                <span class="payment__card-number">
+                  1234 12•• •••• 1234
+                </span>
+              </div>
+            </div>
+            <div class="payment__instant-apply">
+              <input type="checkbox" id="instant-apply" name="instant-apply" class='checkbox'>
+              <label for="instant-apply" class='payment__instant-apply-text'>Списать оплату сразу</label>
+              <p class='payment__instant-hint'>Спишем оплату с карты при получении</p>
             </div>
           </div>
-
-          <button class="order__confirm">
-            Заказать
-          </button>
+          <div class="order__finish">
+            <button class="order__confirm">
+              Заказать
+            </button>
+            <div class="order__usage-apply">
+              <img src="images/order/apply.svg" alt="apply" class="order__usage-apply-image">
+              <p class="order__usage-apply-text">
+                Соглашаюсь <a href="#0">с правилами пользования торговой площадкой</a> и <a href="#0">возврата</a>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </aside>
     </div>
   </main>
   <footer class='footer section'>
