@@ -442,6 +442,50 @@
 	background-color: #9797af;
 }
 
+.content__not-available {
+	color: #9797af;
+}
+
+.content__not-available
+	> .content__products
+	> .content__product
+	> .content__price {
+	visibility: hidden;
+}
+
+.content__not-available
+	> .content__products
+	> .content__product
+	> .product__actions
+	> .product__amount-actions {
+	display: none;
+}
+
+.content__not-available
+	> .content__products
+	> .content__product
+	> .product__actions
+	> .product__left {
+	display: none;
+}
+
+.content__not-available-head {
+	display: flex;
+	gap: 11px;
+	padding-bottom: 17px;
+	border-bottom: 1px solid lightgray;
+}
+
+.content__not-available-title {
+	color: #000;
+	flex: 1 0 0;
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 24px;
+}
+
 .sidebar {
 	flex-basis: 429px;
 	min-width: 303px;
