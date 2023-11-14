@@ -500,6 +500,94 @@
 	line-height: 24px;
 }
 
+.registration {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px 24px 24px 24px;
+}
+
+.delivery__title {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 16px;
+}
+
+.delivery__title-text {
+	flex: 1 0 0;
+	font-family: Segoe UI;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 32px;
+	letter-spacing: -0.24px;
+}
+
+.edit-button {
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 24px;
+	background: none;
+	border: none;
+	color: #cb11ab;
+}
+
+.delivery__details {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: repeat(4, auto);
+	row-gap: 16px;
+	column-gap: 32px;
+	justify-content: start;
+}
+
+.delivery__detail-title {
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.delivery__detail-info {
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.delivery__detail-address {
+	font-style: normal;
+}
+
+.delivery__address-info {
+	display: flex;
+	align-items: center;
+	margin-bottom: 4px;
+}
+
+.delivery__address-info > p {
+	margin-right: 8px;
+}
+
+.delivery__rating {
+	width: 12px;
+	height: 12px;
+	margin-right: 4px;
+}
+
+.delivery__products {
+	display: flex;
+	gap: 8px;
+}
+
+.delivery__product {
+	width: 40px;
+}
+
 .sidebar {
 	flex-basis: 429px;
 	min-width: 303px;
@@ -555,7 +643,7 @@
 	flex: 1 0 0;
 }
 
-.delivery {
+.order__delivery {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
@@ -652,7 +740,7 @@
 	text-decoration-color: rgba(12, 180, 119, 0.2);
 }
 
-.payment {
+.order__payment {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
