@@ -626,6 +626,11 @@
 	color: white;
 }
 
+.cart-payment {
+	margin-top: 40px;
+	margin-bottom: 24px;
+}
+
 .payment__card-info-cart {
 	margin-bottom: 8px;
 }
@@ -637,6 +642,77 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 16px;
+}
+
+.cart-form {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+	padding: 16px 0 24px 0;
+}
+
+.cart-form__title {
+	font-family: Segoe UI;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 32px;
+	letter-spacing: -0.24px;
+}
+
+.cart-form__line {
+	display: flex;
+	max-width: 700px;
+	gap: 24px;
+}
+
+.cart-form__line:not(:last-child) {
+	margin-bottom: 37px;
+}
+
+.cart-form__input-form {
+	position: relative;
+	flex: 1 0 0;
+}
+
+.cart-form__input-form > label {
+	display: block;
+	width: 100%;
+}
+
+.cart-form__input {
+	width: 100%;
+	height: 24px;
+	border: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	padding-bottom: 3px;
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.cart-form__input:focus {
+	outline: 0;
+}
+
+.cart-form__input:focus + .cart-form__placeholder {
+	top: -15px;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.cart-form__placeholder {
+	transition: all 0.5s ease;
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #9797af;
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
 }
 
 .sidebar {
@@ -827,7 +903,6 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 16px;
-	margin-right: 16px;
 }
 
 .payment__card-number_big {
