@@ -690,6 +690,7 @@
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 24px;
+	background: none;
 }
 
 .cart-form__input:focus {
