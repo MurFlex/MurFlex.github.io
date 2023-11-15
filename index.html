@@ -402,7 +402,7 @@
             </div>
             <div class="delivery__details">
               <h3 class="delivery__detail-title">
-                Выбрать пункт выдачи
+                Пункт выдачи
               </h3>
               <div class="delivery__detail-info">
                 <address class="delivery__detail-address">
@@ -425,9 +425,17 @@
               </h3>
               <div class="delivery__detail-info">
                 <div class="delivery__products">
-                  <img src="images/products/product-1.png" alt="product-1" class="delivery__product">
-                  <img src="images/products/product-2.png" alt="product-1" class="delivery__product">
-                  <img src="images/products/product-3.png" alt="product-1" class="delivery__product">
+                  <div class="delivery__shipping-info">
+                    <img src="images/products/product-1.png" alt="product-1" class="delivery__product">
+                  </div>
+                  <div class="delivery__shipping-info">
+                    <img src="images/products/product-2.png" alt="product-1" class="delivery__product">
+                    <div class="delivery__shipping-label">184</div>
+                  </div>
+                  <div class="delivery__shipping-info">
+                    <img src="images/products/product-3.png" alt="product-1" class="delivery__product">
+                    <div class="delivery__shipping-label">2</div>
+                  </div>
                 </div>
               </div>
               <h3 class="delivery__detail-title">
@@ -435,12 +443,39 @@
               </h3>
               <div class="delivery__detail-info">
                 <div class="delivery__products">
-                  <img src="images/products/product-2.png" alt="" class="delivery__product">
+                  <div class="delivery__shipping-info">
+                    <img src="images/products/product-2.png" alt="" class="delivery__product">
+                    <div class="delivery__shipping-label">16</div>
+                  </div>
+                </div>
+              </div>
+              <div class="delivery__hint delivery__hint_big">
+                <img src="images/order/price shipping.svg" alt="price-shipping" class="delivery__hint-img">
+                <div class="delivery__hint-text">
+                  Обратная доставка товаров на склад при отказе — <span class='text-green'>бесплатно</span>
                 </div>
               </div>
             </div>
           </section>
-
+          <section class="cart-payment">
+            <!-- Вывести в общий класс и переименовать по бэм -->
+            <div class="delivery__title">
+              <h2 class="delivery__title-text">
+                Способ оплаты
+              </h2>
+              <button class="delivery__button edit-button">
+                Изменить
+              </button>
+            </div>
+            <div class="payment__card-info payment__card-info-cart">
+              <img src="images/order/mir.svg" alt="mir" class="payment__bank-icon">
+              <span class="payment__card-number payment__card-number_big">
+                1234 12•• •••• 1234
+              </span>
+              <span class="cart__payment-method-expiry payment__card-number_big">01/30</span>
+            </div>
+            <span class="cart__payment-text">Спишем оплату с карты при получении</span>
+          </section>
         </section>
       </section>
       <aside class="sidebar">

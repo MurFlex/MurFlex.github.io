@@ -158,6 +158,9 @@
 }
 
 .content__cart {
+	display: flex;
+	flex-direction: column;
+	gap: 37px;
 	max-width: 891px;
 	flex: 1 0 0;
 }
@@ -230,7 +233,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	margin-bottom: 34px;
 }
 
 .content__product {
@@ -535,6 +537,8 @@
 	line-height: 24px;
 	background: none;
 	border: none;
+	padding: 0;
+	align-self: end;
 	color: #cb11ab;
 }
 
@@ -571,6 +575,11 @@
 	display: flex;
 	align-items: center;
 	margin-bottom: 4px;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
 }
 
 .delivery__address-info > p {
@@ -590,6 +599,44 @@
 
 .delivery__product {
 	width: 40px;
+}
+
+.delivery__shipping-info {
+	position: relative;
+}
+
+.delivery__shipping-label {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f55123;
+	border-radius: 16px;
+	min-width: 16px;
+	padding: 1px 2px 1px 2px;
+	height: 16px;
+	right: -4.083px;
+	top: -7.998px;
+	text-align: center;
+	font-family: Segoe UI;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 18px;
+	color: white;
+}
+
+.payment__card-info-cart {
+	margin-bottom: 8px;
+}
+
+.cart__payment-text {
+	color: #9797af;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
 }
 
 .sidebar {
@@ -725,6 +772,11 @@
 	align-self: stretch;
 }
 
+.delivery__hint_big {
+	grid-column: 1/3;
+	padding: 0;
+}
+
 .delivery__hint-img {
 	height: 22px;
 	width: 22px;
@@ -775,6 +827,13 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 16px;
+	margin-right: 16px;
+}
+
+.payment__card-number_big {
+	font-family: Segoe UI;
+	font-size: 16px;
+	line-height: 24px;
 }
 
 .payment__instant-apply {
