@@ -32,7 +32,7 @@
 
 .header__logo-text {
 	color: white;
-	width: 107px; /* В макете 106px */
+	max-width: 107px;
 	font-family: Segoe UI, sans-serif;
 	font-size: 28px;
 	font-style: normal;
@@ -708,6 +708,19 @@
 	line-height: 16px;
 }
 
+.cart-form__input:not(:placeholder-shown):not(:focus)
+	+ .cart-form__placeholder {
+	top: -15px;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.cart-form__input:placeholder-shown:not(:focus) + .cart-form__placeholder {
+	top: 0;
+	font-size: 16px;
+	line-height: 24px;
+}
+
 .cart-form__placeholder {
 	transition: all 0.5s ease;
 	position: absolute;
@@ -978,4 +991,60 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 16px;
+}
+
+@media (max-width: 380px) {
+	body {
+		min-width: 379px;
+	}
+
+	.section {
+		max-width: 380px;
+	}
+
+	.header {
+		max-width: 100%;
+		justify-content: space-between;
+		padding: 0 20px;
+		gap: 16px;
+	}
+
+	.header__navigation {
+	}
+
+	.header__logo-text {
+		flex: 1 0 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: 380px;
+		font-family: Segoe UI;
+		font-size: 26px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 24px; /* 92.308% */
+		font-variant: all-small-caps;
+		letter-spacing: 0.52px;
+	}
+
+	.header__search {
+		background: none;
+		flex: 0;
+	}
+
+	.header__search > input {
+		display: none;
+	}
+
+	.header__user-bar {
+		display: none;
+	}
+
+	.main {
+		display: none;
+	}
+
+	.footer {
+		display: none;
+	}
 }
