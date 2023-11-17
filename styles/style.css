@@ -272,6 +272,10 @@
 	gap: 8px;
 }
 
+.product__price_phone {
+	display: none;
+}
+
 .product__name {
 	max-width: 250px;
 	font-family: Segoe UI;
@@ -993,9 +997,10 @@
 	line-height: 16px;
 }
 
-@media (max-width: 321px) {
+@media (max-width: 320px) {
 	body {
-		min-width: 320px;
+		min-width: 1px;
+		width: 320px;
 	}
 
 	.section {
@@ -1003,10 +1008,9 @@
 	}
 
 	.header {
-		max-width: 100%;
 		justify-content: space-between;
 		/* padding: 11px 20px 21px 20px; */
-		padding: 0 13px 0 0;
+		padding: 0 13px 7px 0;
 		gap: 16px;
 	}
 
@@ -1024,6 +1028,30 @@
 		width: 28px;
 	}
 
+	.product__price_phone {
+		display: flex;
+		gap: 5px;
+	}
+
+	.product__price-discount_phone {
+		color: Gray;
+		font-family: Segoe UI;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 16px;
+		text-decoration: line-through;
+		text-decoration-color: Gray;
+	}
+
+	.product__price-text_phone {
+		font-family: Segoe UI;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 24px;
+	}
+
 	.header__menu::after {
 		content: url('../images/header/burger-mobile.svg');
 		position: absolute;
@@ -1035,7 +1063,7 @@
 
 	.header__logo-text {
 		flex: 1 0 0;
-		max-width: 320px;
+		max-width: 288px;
 		font-family: Segoe UI;
 		font-size: 26px;
 		font-style: normal;
@@ -1054,6 +1082,7 @@
 
 	.header__search-icon {
 		color: white;
+		margin-top: 7px;
 	}
 
 	.header__search > input {
@@ -1064,8 +1093,95 @@
 		display: none;
 	}
 
-	.main {
+	.content {
+		flex-direction: column;
+		padding: 15px 17px;
+	}
+
+	.content__title {
+		font-family: Segoe UI;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 28px;
+		letter-spacing: -0.2px;
+		margin-top: 0;
+		margin-bottom: 13.5px;
+	}
+
+	.content__product {
+		min-width: 1px;
+		max-width: 100%;
+		flex-wrap: wrap;
+	}
+
+	.content__product-info {
+		min-width: 100%;
+		margin-top: 18px;
+	}
+
+	.product__image-with-selector {
+		position: relative;
+	}
+
+	.product__image-with-selector > .checkbox {
+		position: absolute;
+		top: 0;
+		left: 4px;
+	}
+
+	.product__image {
+		width: 80px;
+		height: 106px;
+	}
+
+	.product__name {
+		font-family: Segoe UI;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 20px;
+	}
+
+	.product__actions {
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		height: 32px;
+		gap: 16px;
+	}
+
+	.product__variations > span:not(:first-child) {
 		display: none;
+	}
+
+	.product__amount-actions {
+		height: 32px;
+	}
+
+	.product__amount {
+		font-family: Segoe UI;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 20px;
+	}
+
+	.product__vendor {
+		display: none;
+	}
+
+	.product__left {
+		width: 100px;
+	}
+
+	.content__price {
+		display: none;
+	}
+
+	.content__cart {
+		max-width: 288px;
 	}
 
 	.footer {
