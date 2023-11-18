@@ -197,6 +197,11 @@
 .checkbox {
 	appearance: none;
 	margin: 0;
+	background: white;
+	width: 22px;
+	height: 22px;
+	border-radius: 7px;
+	border: 1px solid #00000033;
 }
 
 .checkbox::after {
@@ -997,10 +1002,10 @@
 	line-height: 16px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 380px) {
 	body {
 		min-width: 1px;
-		width: 320px;
+		width: 100vw;
 	}
 
 	.section {
@@ -1009,9 +1014,9 @@
 
 	.header {
 		justify-content: space-between;
-		/* padding: 11px 20px 21px 20px; */
 		padding: 0 13px 7px 0;
 		gap: 16px;
+		margin: 0 auto;
 	}
 
 	.header__navigation {
@@ -1020,6 +1025,7 @@
 
 	.header__menu {
 		border: 0;
+		position: relative;
 	}
 
 	.header__image {
@@ -1034,6 +1040,8 @@
 	}
 
 	.product__price-discount_phone {
+		display: flex;
+		align-items: center;
 		color: Gray;
 		font-family: Segoe UI;
 		font-size: 13px;
@@ -1057,8 +1065,8 @@
 		position: absolute;
 		height: 28px;
 		width: 28px;
-		top: 14px;
-		left: 14px;
+		top: 13px;
+		left: 15px;
 	}
 
 	.header__logo-text {
@@ -1118,6 +1126,7 @@
 	.content__product-info {
 		min-width: 100%;
 		margin-top: 18px;
+		position: relative;
 	}
 
 	.product__image-with-selector {
@@ -1152,8 +1161,25 @@
 		gap: 16px;
 	}
 
-	.product__variations > span:not(:first-child) {
+	.mobile-hide {
 		display: none;
+	}
+
+	#size {
+		display: block;
+		position: absolute;
+		color: black;
+		left: 4px;
+		bottom: 4px;
+		padding: 0 4px;
+		border: 1px solid white;
+		border-radius: 6px;
+		background-color: white;
+		font-family: Segoe UI;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 20px;
 	}
 
 	.product__amount-actions {
@@ -1166,6 +1192,10 @@
 		font-style: normal;
 		font-weight: 400;
 		line-height: 20px;
+	}
+
+	.product__actions-list {
+		flex: 1 0 0;
 	}
 
 	.product__vendor {
@@ -1182,6 +1212,23 @@
 
 	.content__cart {
 		max-width: 288px;
+	}
+
+	.cart-form__line {
+		flex-direction: column;
+	}
+
+	.cart-form__line:not(:last-child) {
+		margin-bottom: 25px;
+	}
+
+	.delivery__title-text {
+		font-family: Segoe UI;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 28px;
+		letter-spacing: -0.2px;
 	}
 
 	.footer {
