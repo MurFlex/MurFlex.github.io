@@ -1001,6 +1001,10 @@
 	line-height: 16px;
 }
 
+.mobile-navigation {
+	display: none;
+}
+
 @media (max-width: 450px) {
 	body {
 		min-width: 1px;
@@ -1352,7 +1356,84 @@
 		gap: 45px;
 	}
 
-	.footer {
+	.order {
+		margin-top: 0;
+		padding: 8px 16px;
+		gap: 16px;
+		box-shadow: 0px 0px 0px;
+		background: none;
+	}
+
+	.order__total {
+		font-family: Segoe UI;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 28px;
+		letter-spacing: -0.2px;
+		margin-bottom: 6px;
+	}
+
+	.order__detail {
 		display: none;
+	}
+
+	.delivery__address {
+		display: none;
+	}
+
+	.delivery__date {
+		display: none;
+	}
+
+	.order__payment {
+		gap: 0;
+	}
+
+	.order__finish {
+		margin-top: 10px;
+	}
+
+	.order__delivery > .delivery__hint {
+		background-color: #f0ecf4;
+	}
+
+	.payment__instant-apply {
+		background-color: #f0ecf4;
+	}
+
+	.sidebar {
+		flex-basis: 417px;
+	}
+
+	.mobile-navigation {
+		position: sticky;
+		bottom: 0px;
+		display: block;
+		height: 56px;
+		padding: 0px 13px;
+		background-color: #fff;
+	}
+
+	.mobile-navigation__list {
+		height: 100%;
+		list-style-type: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.mobile-navigation__link {
+		position: relative;
+	}
+
+	.mobile-navigation__link > .user-item__icon_notification::before {
+		top: -17px;
+		right: -5px;
+	}
+
+	.mobile-navigation__image {
+		width: 28px;
+		height: 28px;
 	}
 }
