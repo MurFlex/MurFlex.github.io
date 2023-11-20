@@ -1426,7 +1426,7 @@
 
 	.mobile-navigation {
 		position: sticky;
-		bottom: 0px;
+		bottom: 0;
 		display: block;
 		height: 56px;
 		padding: 0px 13px;
@@ -1441,12 +1441,12 @@
 		justify-content: space-between;
 	}
 
-	.mobile-navigation__link {
+	.mobile-navigation__item {
 		position: relative;
 	}
 
 	.mobile-navigation__link > .user-item__icon_notification::before {
-		top: -17px;
+		top: -5px;
 		right: -5px;
 	}
 
