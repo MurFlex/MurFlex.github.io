@@ -1,3 +1,29 @@
+const accordions = document.querySelectorAll('.accordion')
+
+accordions.forEach(accordion =>
+	accordion.addEventListener('click', () => {
+		const products =
+			accordion.parentElement.parentElement.querySelector('.content__products')
+		if (products.classList.contains('hidden')) {
+			products.classList.remove('hidden')
+			return
+		}
+		products.classList.add('hidden')
+
+		accordion.parentElement.querySelector('.content__select-text').textContent =
+			'Общая сумма заказа: ' +
+			document
+				.querySelector('#totalPrice')
+				.textContent.replace(/ /g, '')
+				.replace(/\D/g, '') +
+			' сом'
+	})
+)
+
+const handleCountChange = (...rest) => {
+	// update total price
+}
+
 // Handling click on plus or minus buttons
 const updateCount = (count, updateType, maxCount = 999) => {
 	let countNumber = +count.textContent
@@ -11,6 +37,13 @@ const updateCount = (count, updateType, maxCount = 999) => {
 	count.textContent = countNumber
 
 	return count
+}
+
+const updateTotal = () => {
+	const total = +document
+		.querySelector('#totalPrice')
+		.textContent.replace(/ /g, '')
+		.replace(/\D/g, '')
 }
 
 const PRODUCTS = [
@@ -48,8 +81,7 @@ cartCounters.forEach(counter => {
 		.replace(/\s\s*$/, '')
 		.replace(/\s+/g, ' ')
 
-	const amount = PRODUCTS.filter(product => product.name === productName)[0]
-		.amount
+	const product = PRODUCTS.filter(product => product.name === productName)[0]
 
 	const buttons = counter.querySelectorAll('button')
 
@@ -58,19 +90,23 @@ cartCounters.forEach(counter => {
 	const decrementButton = buttons[0]
 
 	incrementButton.addEventListener('click', () => {
-		const updatedCount = updateCount(count, 'increment', amount)
+		buttonType = 'increment'
+		const updatedCount = updateCount(count, buttonType, product.amount)
 
 		decrementButton.classList.add('product__button_active')
 
-		if (+updatedCount.textContent === amount) {
+		if (+updatedCount.textContent === product.amount) {
 			incrementButton.classList.remove('product__button_active')
 		} else {
 			incrementButton.classList.add('product__button_active')
 		}
+		// Maybe I should check if count changing before for not doing extra iterations
+		handleCountChange(product, buttonType)
 	})
 
 	decrementButton.addEventListener('click', () => {
-		const updatedCount = updateCount(count, 'decrement', amount)
+		buttonType = 'decrement'
+		const updatedCount = updateCount(count, buttonType, product.amount)
 
 		incrementButton.classList.add('product__button_active')
 
@@ -79,5 +115,34 @@ cartCounters.forEach(counter => {
 		} else {
 			decrementButton.classList.add('product__button_active')
 		}
+		// Maybe I should check if count changing before for not doing extra iterations
+		handleCountChange(product, buttonType)
+	})
+})
+
+const productActionsBlock = document.querySelectorAll('.product__actions-list')
+
+productActionsBlock.forEach(productActionsList => {
+	const productActions = productActionsList.querySelectorAll(
+		'.product__actions-item'
+	)
+
+	const likeButton = productActions[0]
+	const deleteButton = productActions[1]
+
+	likeButton.addEventListener('click', () => {
+		if (likeButton.classList.contains('like_active')) {
+			likeButton.classList.remove('like_active') // maybe I should optimize css
+
+			return
+		}
+
+		likeButton.classList.add('like_active')
+	})
+
+	deleteButton.addEventListener('click', () => {
+		// Handle changing price here
+		updateTotal()
+		deleteButton.closest('.content__product').remove()
 	})
 })

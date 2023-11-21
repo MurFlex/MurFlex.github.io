@@ -240,6 +240,10 @@
 	gap: 16px;
 }
 
+.hidden {
+	display: none;
+}
+
 .content__product {
 	display: flex;
 	align-items: center;
@@ -400,6 +404,10 @@
 	> svg
 	> g
 	> path {
+	fill: #cb11ab;
+}
+
+.like_active > .product__button > svg > g > path {
 	fill: #cb11ab;
 }
 
@@ -1026,7 +1034,7 @@
 @media (max-width: 450px) {
 	body {
 		min-width: 1px;
-		width: 100vw;
+		width: 320px;
 	}
 
 	.section {
@@ -1134,8 +1142,7 @@
 
 	.cart {
 		padding: 16px;
-		min-width: 288px;
-		max-width: 320px;
+		width: 320px;
 		margin: 0 auto;
 	}
 
@@ -1359,6 +1366,7 @@
 	}
 
 	.content__not-available {
+		width: 320px;
 		padding: 0 16px;
 	}
 
