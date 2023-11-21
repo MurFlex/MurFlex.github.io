@@ -6,17 +6,26 @@ accordions.forEach(accordion =>
 			accordion.parentElement.parentElement.querySelector('.content__products')
 		if (products.classList.contains('hidden')) {
 			products.classList.remove('hidden')
+
+			accordion.parentElement.querySelector(
+				'.content__select-text'
+			).textContent = 'Выбрать все'
+
 			return
 		}
 		products.classList.add('hidden')
 
-		accordion.parentElement.querySelector('.content__select-text').textContent =
-			'Общая сумма заказа: ' +
-			document
-				.querySelector('#totalPrice')
-				.textContent.replace(/ /g, '')
-				.replace(/\D/g, '') +
-			' сом'
+		const accordionText = accordion.parentElement.querySelector(
+			'.content__select-text'
+		)
+		accordionText.textContent =
+			PRODUCTS.length +
+			' товара · ' +
+			document.querySelector('#totalPrice').textContent
+
+		accordionText.classList.add('content__not-available-title')
+
+		accordion.parentElement.querySelector('.checkbox').style['display'] = 'none'
 	})
 )
 

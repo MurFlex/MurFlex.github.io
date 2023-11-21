@@ -1433,6 +1433,7 @@
 	}
 
 	.mobile-navigation {
+		width: 100vw;
 		position: sticky;
 		bottom: 0;
 		display: block;
