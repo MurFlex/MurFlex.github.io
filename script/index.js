@@ -1,9 +1,27 @@
+const selectAllCheckbox = document.querySelector('#select-all')
+
+console.log(selectAllCheckbox)
+
+selectAllCheckbox.addEventListener('click', e => {
+	if (selectAllCheckbox.checked) {
+		console.log(1)
+	}
+
+	handleCountChange(e)
+})
+
+// Handling products hide
 const accordions = document.querySelectorAll('.accordion')
 
 accordions.forEach(accordion =>
 	accordion.addEventListener('click', () => {
 		const products =
 			accordion.parentElement.parentElement.querySelector('.content__products')
+
+		const accordionText = accordion.parentElement.querySelector(
+			'.content__select-text'
+		)
+
 		if (products.classList.contains('hidden')) {
 			products.classList.remove('hidden')
 
@@ -11,13 +29,15 @@ accordions.forEach(accordion =>
 				'.content__select-text'
 			).textContent = 'Выбрать все'
 
+			accordion.parentElement.querySelector('.checkbox').style['display'] =
+				'flex'
+
+			accordionText.classList.remove('content__not-available-title')
+
 			return
 		}
 		products.classList.add('hidden')
 
-		const accordionText = accordion.parentElement.querySelector(
-			'.content__select-text'
-		)
 		accordionText.textContent =
 			PRODUCTS.length +
 			' товара · ' +
@@ -29,8 +49,8 @@ accordions.forEach(accordion =>
 	})
 )
 
-const handleCountChange = (...rest) => {
-	// update total price
+const handleCountChange = e => {
+	console.log(e)
 }
 
 // Handling click on plus or minus buttons

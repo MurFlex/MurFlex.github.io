@@ -1034,7 +1034,7 @@
 @media (max-width: 450px) {
 	body {
 		min-width: 1px;
-		width: 320px;
+		margin: 0 auto;
 	}
 
 	.section {
@@ -1042,6 +1042,7 @@
 	}
 
 	.header {
+		width: 320px;
 		justify-content: space-between;
 		padding: 0 13px 7px 0;
 		gap: 16px;
@@ -1137,7 +1138,7 @@
 	.content {
 		flex-direction: column;
 		padding: 0;
-		width: 100%;
+		width: 320px;
 	}
 
 	.cart {
@@ -1435,6 +1436,7 @@
 	.mobile-navigation {
 		width: 100vw;
 		position: sticky;
+		overflow-anchor: none;
 		bottom: 0;
 		display: block;
 		height: 56px;
@@ -1451,6 +1453,7 @@
 	}
 
 	.mobile-navigation__item {
+		height: 100%
 		position: relative;
 	}
 
