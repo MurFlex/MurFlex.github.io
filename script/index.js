@@ -8,6 +8,16 @@ selectAllCheckbox.addEventListener('click', e => {
 	handleCountChange(e)
 })
 
+const updateIds = () => {
+	let id = 0
+	productsData.forEach(product => {
+		product.id = id
+		id++
+	})
+
+	console.log(productsData)
+}
+
 // Handling products hide
 const accordions = document.querySelectorAll('.accordion')
 
@@ -77,7 +87,7 @@ const updateCount = (count, updateType, maxCount = 999) => {
 }
 
 const updateTotalPrice = (price = 0) => {
-	const formattedPrice = formatTotal(String(price))
+	const formattedPrice = formatTotal(price, 2)
 
 	document.querySelector('#totalPrice').textContent = formattedPrice
 }
@@ -88,7 +98,7 @@ const updateDiscount = (amount = 0, price = 0) => {
 		.querySelectorAll('span')
 
 	discountSpans[0].textContent = amount + ' товара'
-	discountSpans[1].textContent = formatTotal(price) + ' сом'
+	discountSpans[1].textContent = formatTotal(price, 2) + ' сом'
 }
 
 const updateTotal = () => {
@@ -102,15 +112,13 @@ const updateTotal = () => {
 		0
 	)
 
-	const total = productsData
-		.reduce(
-			(acc, product) =>
-				acc +
-				product.amount *
-					(product.price - (product.price * product.discount) / 100), // amount * price - discount price
-			0
-		)
-		.toFixed(2)
+	const total = productsData.reduce(
+		(acc, product) =>
+			acc +
+			product.amount *
+				(product.price - (product.price * product.discount) / 100), // amount * price - discount price
+		0
+	)
 
 	const totalWithoutDiscount = productsData.reduce(
 		(acc, product) => acc + product.amount * product.price,
@@ -120,9 +128,9 @@ const updateTotal = () => {
 	updateTotalPrice(total)
 	updateDiscount(totalAmount, totalWithoutDiscount)
 }
-
-const formatTotal = number => {
-	if (typeof number !== 'string') number = String(number)
+// Working weird
+const formatTotal = (number, fixed = 0) => {
+	if (typeof number !== 'string') number = String(number.toFixed(fixed))
 
 	if (number.length < 7) return number
 
@@ -138,6 +146,26 @@ const formatTotal = number => {
 	resultNumber = resultNumber.replace(/\s+$/, '') + '.' + splittedNumber[0]
 
 	return resultNumber
+}
+
+const updateProductPrice = (product, productElement) => {
+	const phonePrice = productElement.querySelector('.product__price-text_phone')
+	const currentPrice = productElement.querySelector('.product__current-price ')
+	const oldPrice = productElement.querySelector('.product__old-price')
+	const phoneOldPrice = productElement.querySelector(
+		'.product__price-discount_phone'
+	)
+
+	const priceWithDiscount = formatTotal(
+		product.amount * (product.price - (product.price * product.discount) / 100)
+	)
+
+	const priceWithoutDiscount = formatTotal(product.price * product.amount)
+
+	phonePrice.textContent = priceWithDiscount
+	currentPrice.textContent = priceWithDiscount
+	oldPrice.textContent = priceWithoutDiscount
+	phoneOldPrice.textContent = priceWithoutDiscount
 }
 
 let productsData = [
@@ -208,6 +236,11 @@ cartCounters.forEach(counter => {
 		}
 		// Maybe I should check if count changing before for not doing extra iterations
 		handleCountChange(product.id, +updatedCount.textContent)
+
+		updateProductPrice(
+			productsData[product.id],
+			incrementButton.closest('.content__product')
+		)
 	})
 
 	decrementButton.addEventListener('click', () => {
@@ -223,6 +256,11 @@ cartCounters.forEach(counter => {
 		}
 		// Maybe I should check if count changing before for not doing extra iterations
 		handleCountChange(product.id, +updatedCount.textContent)
+
+		updateProductPrice(
+			productsData[product.id],
+			decrementButton.closest('.content__product')
+		)
 	})
 })
 
@@ -259,9 +297,8 @@ productActionBlocks.forEach(productActionsList => {
 
 		productsData.splice(deletingProductId, 1)
 
-		console.log(productsData)
-
 		updateTotal()
+		updateIds()
 		productBlock.remove()
 	})
 })
