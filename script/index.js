@@ -1,7 +1,5 @@
 const selectAllCheckbox = document.querySelector('#select-all')
 
-console.log(selectAllCheckbox)
-
 selectAllCheckbox.addEventListener('click', e => {
 	if (selectAllCheckbox.checked) {
 		console.log(1)
@@ -38,8 +36,13 @@ accordions.forEach(accordion =>
 		}
 		products.classList.add('hidden')
 
+		productsCount = productsData.reduce(
+			(acc, product) => acc + product.amount,
+			0
+		)
+
 		accordionText.textContent =
-			PRODUCTS.length +
+			productsCount +
 			' товара · ' +
 			document.querySelector('#totalPrice').textContent
 
@@ -49,8 +52,13 @@ accordions.forEach(accordion =>
 	})
 )
 
-const handleCountChange = e => {
-	console.log(e)
+const handleCountChange = (productId, amount) => {
+	productsData[productId] = {
+		...productsData[productId],
+		amount,
+	}
+
+	updateTotal()
 }
 
 // Handling click on plus or minus buttons
@@ -68,31 +76,94 @@ const updateCount = (count, updateType, maxCount = 999) => {
 	return count
 }
 
-const updateTotal = () => {
-	const total = +document
-		.querySelector('#totalPrice')
-		.textContent.replace(/ /g, '')
-		.replace(/\D/g, '')
+const updateTotalPrice = (price = 0) => {
+	const formattedPrice = formatTotal(String(price))
+
+	document.querySelector('#totalPrice').textContent = formattedPrice
 }
 
-const PRODUCTS = [
+const updateDiscount = (amount = 0, price = 0) => {
+	const discountSpans = document
+		.querySelector('#discount')
+		.querySelectorAll('span')
+
+	discountSpans[0].textContent = amount + ' товара'
+	discountSpans[1].textContent = formatTotal(price) + ' сом'
+}
+
+const updateTotal = () => {
+	if (productsData.length === 0) {
+		updateTotalPrice()
+		updateDiscount()
+	}
+
+	const totalAmount = productsData.reduce(
+		(acc, product) => acc + product.amount,
+		0
+	)
+
+	const total = productsData
+		.reduce(
+			(acc, product) =>
+				acc +
+				product.amount *
+					(product.price - (product.price * product.discount) / 100), // amount * price - discount price
+			0
+		)
+		.toFixed(2)
+
+	const totalWithoutDiscount = productsData.reduce(
+		(acc, product) => acc + product.amount * product.price,
+		0
+	)
+
+	updateTotalPrice(total)
+	updateDiscount(totalAmount, totalWithoutDiscount)
+}
+
+const formatTotal = number => {
+	if (typeof number !== 'string') number = String(number)
+
+	if (number.length < 7) return number
+
+	const reversedNumber = number.split('').reverse().join('')
+	const splittedNumber = reversedNumber.match(/\d{1,3}/g)
+
+	let resultNumber = ''
+
+	for (let i = splittedNumber.length - 1; i > 0; i--) {
+		resultNumber = resultNumber + splittedNumber[i] + ' '
+	}
+
+	resultNumber = resultNumber.replace(/\s+$/, '') + '.' + splittedNumber[0]
+
+	return resultNumber
+}
+
+let productsData = [
 	{
+		id: 0,
 		name: 'Футболка UZcotton мужская',
 		price: 1051,
 		discount: 50.33301617507136,
-		amount: 2,
+		amount: 1,
+		maxAmount: 2,
 	},
 	{
+		id: 1,
 		name: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
 		price: 11500.235,
 		discount: 8.695474483782288,
-		amount: 999,
+		amount: 200,
+		maxAmount: 999,
 	},
 	{
+		id: 2,
 		name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell',
 		price: 475,
 		discount: 48,
 		amount: 2,
+		maxAmount: 2,
 	},
 ]
 
@@ -102,15 +173,21 @@ const createProduct = ({ name, price }) => {
 
 const cartCounters = document.querySelectorAll('.cart .product__amount-actions') // maybe I should get products here instead to not looking for them in the loop
 
-cartCounters.forEach(counter => {
-	const productName = counter
-		.closest('.content__product')
-		.querySelector('.product__name')
-		.textContent.replace(/^\s\s*/, '')
+const formatProductName = productName =>
+	productName
+		.replace(/^\s\s*/, '')
 		.replace(/\s\s*$/, '')
 		.replace(/\s+/g, ' ')
 
-	const product = PRODUCTS.filter(product => product.name === productName)[0]
+cartCounters.forEach(counter => {
+	const productName = formatProductName(
+		counter.closest('.content__product').querySelector('.product__name')
+			.textContent
+	)
+
+	const product = productsData.filter(
+		product => product.name === productName
+	)[0]
 
 	const buttons = counter.querySelectorAll('button')
 
@@ -119,22 +196,22 @@ cartCounters.forEach(counter => {
 	const decrementButton = buttons[0]
 
 	incrementButton.addEventListener('click', () => {
-		buttonType = 'increment'
-		const updatedCount = updateCount(count, buttonType, product.amount)
+		const buttonType = 'increment'
+		const updatedCount = updateCount(count, buttonType, product.maxAmount)
 
 		decrementButton.classList.add('product__button_active')
 
-		if (+updatedCount.textContent === product.amount) {
+		if (+updatedCount.textContent === product.maxAmount) {
 			incrementButton.classList.remove('product__button_active')
 		} else {
 			incrementButton.classList.add('product__button_active')
 		}
 		// Maybe I should check if count changing before for not doing extra iterations
-		handleCountChange(product, buttonType)
+		handleCountChange(product.id, +updatedCount.textContent)
 	})
 
 	decrementButton.addEventListener('click', () => {
-		buttonType = 'decrement'
+		const buttonType = 'decrement'
 		const updatedCount = updateCount(count, buttonType, product.amount)
 
 		incrementButton.classList.add('product__button_active')
@@ -145,13 +222,13 @@ cartCounters.forEach(counter => {
 			decrementButton.classList.add('product__button_active')
 		}
 		// Maybe I should check if count changing before for not doing extra iterations
-		handleCountChange(product, buttonType)
+		handleCountChange(product.id, +updatedCount.textContent)
 	})
 })
 
-const productActionsBlock = document.querySelectorAll('.product__actions-list')
+const productActionBlocks = document.querySelectorAll('.product__actions-list')
 
-productActionsBlock.forEach(productActionsList => {
+productActionBlocks.forEach(productActionsList => {
 	const productActions = productActionsList.querySelectorAll(
 		'.product__actions-item'
 	)
@@ -170,8 +247,21 @@ productActionsBlock.forEach(productActionsList => {
 	})
 
 	deleteButton.addEventListener('click', () => {
-		// Handle changing price here
+		const productBlock = deleteButton.closest('.content__product')
+
+		const productName = formatProductName(
+			productBlock.querySelector('.product__name').textContent
+		)
+
+		const deletingProductId = productsData.findIndex(
+			product => product.name === productName
+		)
+
+		productsData.splice(deletingProductId, 1)
+
+		console.log(productsData)
+
 		updateTotal()
-		deleteButton.closest('.content__product').remove()
+		productBlock.remove()
 	})
 })
