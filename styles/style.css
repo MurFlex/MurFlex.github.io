@@ -343,7 +343,7 @@
 	border-radius: 8px;
 	width: 100px;
 	height: 44px;
-	padding: 10px 5px 10px 0;
+	/* padding: 10px 5px 10px 0; */
 	display: flex;
 	justify-content: center;
 }
@@ -364,6 +364,7 @@
 	font-weight: 400;
 	line-height: 24px;
 	letter-spacing: -0.2px;
+	overflow: hidden;
 }
 
 .product__button_active {
@@ -451,6 +452,7 @@
 }
 
 .product__current-price {
+	font-family: Segoe UI;
 	color: #000;
 	font-size: 20px;
 	font-weight: 700;
@@ -458,31 +460,27 @@
 	letter-spacing: -0.2px;
 }
 
-.product__current-price_big {
+.price-small {
+	line-height: 24px;
 	font-size: 16px;
 }
 
-.product__current-price > .currency {
+.currency {
+	font-family: Segoe UI;
 	font-size: 16px;
 	font-style: normal;
 	line-height: 24px;
+	font-weight: 700;
+	letter-spacing: -0.2px;
 }
 
 .product__old-price {
-	position: relative;
 	color: #9797af;
 	font-size: 13px;
 	line-height: 16px;
 	border-bottom: 1px dashed #9797af;
-}
-
-.product__old-price::before {
-	content: '';
-	position: absolute;
-	top: 10px;
-	width: 100%;
-	height: 1px;
-	background-color: #9797af;
+	text-decoration: line-through;
+	text-decoration-color: #9797af;
 }
 
 .content__not-available {

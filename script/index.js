@@ -92,6 +92,9 @@ const updateDiscount = (amount = 0, price = 0) => {
 }
 
 const updateTotal = () => {
+	/* productsData.forEach(product => console.log(product.checked))
+	console.log('done') */
+
 	if (productsData.length === 0) {
 		updateTotalPrice()
 		updateDiscount()
@@ -112,7 +115,7 @@ const updateTotal = () => {
 	)
 
 	const totalWithoutDiscount = productsData.reduce(
-		(acc, product) => acc + product.amount * product.price,
+		(acc, product) => acc + product.checked * product.amount * product.price,
 		0
 	)
 
@@ -166,7 +169,7 @@ const updateProductPrice = (product, productElement) => {
 
 	phonePrice.textContent = priceWithDiscount + ' сом'
 	currentPrice.textContent = priceWithDiscount
-	oldPrice.textContent = priceWithoutDiscount
+	oldPrice.textContent = priceWithoutDiscount + ' сом'
 	phoneOldPrice.textContent = priceWithoutDiscount + ' сом'
 }
 
@@ -211,18 +214,25 @@ checkboxes[0].addEventListener('change', () => {
 		checkboxes[i].checked = checkboxes[0].checked
 	}
 
-	productsData.forEach(product => (product.checked = !product.checked))
+	productsData.forEach(product => (product.checked = checkboxes[0].checked))
 
 	updateTotal()
 })
 
 for (let i = 1; i < checkboxes.length; i++) {
 	checkboxes[i].addEventListener('change', () => {
-		const productName = checkboxes[i]
-			.closest('content__product')
-			.querySelector('product__name').textContent
+		const productName = formatProductName(
+			checkboxes[i].closest('.content__product').querySelector('.product__name')
+				.textContent
+		)
 
-		console.log(productName)
+		const productId = productsData.findIndex(
+			product => product.name === productName
+		)
+
+		productsData[productId].checked = checkboxes[i].checked
+
+		updateTotal()
 	})
 }
 
