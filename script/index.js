@@ -100,14 +100,15 @@ const updateDiscount = (amount = 0, price = 0) => {
 		.querySelector('#discount')
 		.querySelectorAll('span')
 
-	discountSpans[0].textContent = amount + ' товара'
+	discountSpans[0].textContent = `${amount} товара`
 	discountSpans[1].textContent = formatTotal(price, 2) + ' сом'
 }
 
-const updateTotal = () => {
-	/* productsData.forEach(product => console.log(product.checked))
-	console.log('done') */
+const updateDiscountValue = value => {
+	document.querySelector('#discountValue').textContent = `-${value} сом`
+}
 
+const updateTotal = () => {
 	if (productsData.length === 0) {
 		updateTotalPrice()
 		updateDiscount()
@@ -132,8 +133,11 @@ const updateTotal = () => {
 		0
 	)
 
+	const discountValue = totalWithoutDiscount - total
+
 	updateTotalPrice(total)
 	updateDiscount(totalAmount, totalWithoutDiscount)
+	updateDiscountValue(discountValue)
 }
 // Working weird
 const formatTotal = (number, fixed = 0) => {
