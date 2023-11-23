@@ -324,12 +324,15 @@
 
 .product__variations {
 	display: flex;
-	gap: 16px;
 	font-family: Segoe UI;
 	font-size: 13px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 16px;
+}
+
+.product__variation:not(:last-child) {
+	margin-right: 16px;
 }
 
 .product__actions {
@@ -1080,6 +1083,16 @@
 	align-items: center;
 	background: none;
 	border: 0;
+}
+
+@media (max-width: 1000px) {
+	body {
+		min-width: 700px;
+	}
+
+	.content {
+		flex-direction: column;
+	}
 }
 
 @media (max-width: 450px) {
