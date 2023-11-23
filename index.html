@@ -35,7 +35,7 @@
         </li>
         <li class="header__user-item">
           <!-- Мб обернуть в кнопку -->
-          <div class="user-item__icon_notification"></div>
+          <div class="user-item__icon_notification">3</div>
           <img src="images/header/cart-icon.svg" alt="cart" class='user-item__icon'>
           <p class="user-item__text">
             Корзина
@@ -645,32 +645,38 @@
                   <label>
                     <input type="text" id="name" class='cart-form__input' placeholder='&nbsp;' required>
                     <span class="cart-form__placeholder">Имя</span>
+                    <span class='cart-form__error hidden'>Введите имя</span>
                   </label>
                 </div>
                 <div class="cart-form__input-form">
                   <label>
                     <input type="text" id="name" class='cart-form__input' placeholder='&nbsp;' required>
                     <span class="cart-form__placeholder">Фамилия</span>
+                    <span class='cart-form__error hidden'>Введите фамилию</span>
                   </label>
                 </div>
               </div>
               <div class="cart-form__line">
                 <div class="cart-form__input-form">
                   <label>
-                    <input type="text" id="name" class='cart-form__input' placeholder='&nbsp;' required>
+                    <input type="text" id="email" class='cart-form__input' placeholder='&nbsp;' required>
                     <span class="cart-form__placeholder">Электронная почта</span>
+                    <span class='cart-form__error hidden'>Проверьте адрес электронной почты</span>
                   </label>
                 </div>
                 <div class="cart-form__input-form">
                   <label>
-                    <input type="text" id="name" class='cart-form__input' placeholder='&nbsp;' required>
+                    <input type="number" id="mobile" class='cart-form__input' placeholder='&nbsp;' maxlength="30"
+                      required>
                     <span class="cart-form__placeholder">Телефон</span>
+                    <span class='cart-form__error hidden'>Формат: +9 999 99 99</span>
                   </label>
                 </div>
                 <div class="cart-form__input-form">
                   <label>
-                    <input type="text" id="name" class='cart-form__input' placeholder='&nbsp;' required>
+                    <input type="number" id="inn" class='cart-form__input' placeholder='&nbsp;' required>
                     <span class="cart-form__placeholder">ИНН</span>
+                    <span class='cart-form__error'>Для таможенного оформления</span>
                   </label>
                 </div>
               </div>
@@ -796,7 +802,7 @@
       <li class="mobile-navigation__item">
         <a href="#0" class="mobile-navigation__link">
           <img src="./images/mobile-navigation/cart.svg" alt="cart" class="mobile-navigation__image">
-          <div class="user-item__icon_notification"></div>
+          <div class="user-item__icon_notification">3</div>
         </a>
       </li>
       <li class="mobile-navigation__item">
@@ -811,6 +817,18 @@
       </li>
     </ul>
   </nav>
+
+  <dialog class="delivery-dialog dialog" id="delivery-modal">
+    <div class="dialog__title">
+      <h2 class="dialog__title-text">
+        Способ доставки
+      </h2>
+      <button class="dialog__close">
+        <img src="./images/dialog/search-close.svg" alt="close" class="dialog__close-image">
+      </button>
+    </div>
+  </dialog>
+
   <script src="./script/index.js"></script>
 </body>
 

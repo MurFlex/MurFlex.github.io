@@ -5,7 +5,19 @@ const updateIds = () => {
 		id++
 	})
 
-	console.log(productsData)
+	updateNotification()
+}
+
+const updateNotification = () => {
+	const productsCount = productsData.length
+
+	document
+		.querySelectorAll('.user-item__icon_notification')
+		.forEach(notification => {
+			if (productsCount == 0) notification.remove()
+
+			notification.textContent = productsCount
+		})
 }
 
 // Handling products hide
@@ -44,7 +56,8 @@ accordions.forEach(accordion =>
 		accordionText.textContent =
 			productsCount +
 			' товара · ' +
-			document.querySelector('#totalPrice').textContent
+			document.querySelector('#totalPrice').textContent +
+			' сом'
 
 		accordionText.classList.add('content__not-available-title')
 
@@ -236,6 +249,21 @@ for (let i = 1; i < checkboxes.length; i++) {
 	})
 }
 
+const instantApplyCheckbox = document.querySelector('#instant-apply')
+
+instantApplyCheckbox.addEventListener('change', () => {
+	const price = document.querySelector('#totalPrice').textContent
+
+	const confirmButton = document.querySelector('.order__confirm')
+
+	if (instantApplyCheckbox.checked) {
+		confirmButton.textContent = 'Оптатить ' + price + ' сом'
+		return
+	}
+
+	confirmButton.textContent = 'Заказать'
+})
+
 const cartCounters = document.querySelectorAll('.cart .product__amount-actions') // maybe I should get products here instead to not looking for them in the loop
 
 const formatProductName = productName =>
@@ -343,3 +371,58 @@ productActionBlocks.forEach(productActionsList => {
 		productBlock.remove()
 	})
 })
+
+// Validation
+const inputs = document.querySelectorAll('.cart-form__input')
+
+inputs.forEach(input =>
+	input.addEventListener('focusout', () => {
+		const isValid = validate(input.value, input.id)
+		const errorSpan = input.closest('label').querySelector('.cart-form__error')
+
+		if (!isValid) {
+			errorSpan.classList.remove('hidden')
+			errorSpan.classList.add('cart-form__error_active')
+			input.classList.add('cart-form__input_error')
+
+			if (input.id === 'inn') errorSpan.textContent = 'Проверьте ИНН'
+
+			return
+		}
+
+		if (input.id === 'inn') errorSpan.textContent = 'Для таможенного оформления'
+		errorSpan.classList.add('hidden')
+		errorSpan.classList.remove('cart-form__error_active')
+		input.classList.remove('cart-form__input_error')
+	})
+)
+
+const validate = (text, inputType) => {
+	switch (inputType) {
+		case 'name':
+			if (text === '') return false
+		case 'email':
+			if (
+				text
+					.toLowerCase()
+					.match(
+						/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+					) === null
+			)
+				return false
+		case 'mobile':
+			if (text.match(/^[\s()+-]*([0-9][\s()+-]*){6,20}$/) === null) return false
+		case 'inn':
+			if (text.length !== 14) return false
+	}
+
+	return true
+}
+
+// Modals
+
+document
+	.querySelector('.delivery__button')
+	.addEventListener('click', () =>
+		document.querySelector('#delivery-modal').showModal()
+	)
