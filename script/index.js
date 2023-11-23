@@ -140,7 +140,8 @@ const formatTotal = (number, fixed = 0) => {
 	let resultNumber = ''
 
 	for (let i = splittedNumber.length - 1; i > 0; i--) {
-		resultNumber = resultNumber + splittedNumber[i] + ' '
+		resultNumber =
+			resultNumber + splittedNumber[i].split('').reverse().join('') + ' '
 	}
 
 	resultNumber = resultNumber.replace(/\s+$/, '') + '.' + splittedNumber[0]
@@ -162,10 +163,10 @@ const updateProductPrice = (product, productElement) => {
 
 	const priceWithoutDiscount = formatTotal(product.price * product.amount)
 
-	phonePrice.textContent = priceWithDiscount
+	phonePrice.textContent = priceWithDiscount + ' сом'
 	currentPrice.textContent = priceWithDiscount
 	oldPrice.textContent = priceWithoutDiscount
-	phoneOldPrice.textContent = priceWithoutDiscount
+	phoneOldPrice.textContent = priceWithoutDiscount + ' сом'
 }
 
 let productsData = [
