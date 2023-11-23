@@ -401,6 +401,7 @@ const validate = (text, inputType) => {
 	switch (inputType) {
 		case 'name':
 			if (text === '') return false
+			break
 		case 'email':
 			if (
 				text
@@ -410,10 +411,13 @@ const validate = (text, inputType) => {
 					) === null
 			)
 				return false
+			break
 		case 'mobile':
 			if (text.match(/^[\s()+-]*([0-9][\s()+-]*){6,20}$/) === null) return false
+			break
 		case 'inn':
 			if (text.length !== 14) return false
+			break
 	}
 
 	return true
