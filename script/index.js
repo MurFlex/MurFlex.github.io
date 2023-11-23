@@ -90,7 +90,7 @@ const updateCount = (count, updateType, maxCount = 999) => {
 }
 
 const updateTotalPrice = (price = 0) => {
-	const formattedPrice = formatTotal(price, 2)
+	const formattedPrice = formatTotal(price)
 
 	document.querySelector('#totalPrice').textContent = formattedPrice
 }
@@ -101,11 +101,13 @@ const updateDiscount = (amount = 0, price = 0) => {
 		.querySelectorAll('span')
 
 	discountSpans[0].textContent = `${amount} товара`
-	discountSpans[1].textContent = formatTotal(price, 2) + ' сом'
+	discountSpans[1].textContent = formatTotal(price) + ' сом'
 }
 
 const updateDiscountValue = value => {
-	document.querySelector('#discountValue').textContent = `-${value} сом`
+	if (value !== 0) value = -1 * value
+
+	document.querySelector('#discountValue').textContent = `${value} сом`
 }
 
 const updateTotal = () => {
@@ -429,8 +431,79 @@ const validate = (text, inputType) => {
 
 // Modals
 
-document
-	.querySelector('.delivery__button')
-	.addEventListener('click', () =>
-		document.querySelector('#delivery-modal').showModal()
+let shipment = {
+	shipment: [
+		{
+			name: 'г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1',
+			rating: '4.99',
+		},
+		{
+			name: 'г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1',
+			rating: '4.99',
+		},
+		{
+			name: 'г. Бишкек, улица Табышалиева, д. 57',
+			rating: '4.99',
+		},
+	],
+	courier: [
+		{
+			name: 'Бишкек, улица Табышалиева, 57',
+		},
+		{
+			name: 'Бишкек, улица Жукеева-Пудовкина, 77/1',
+		},
+		{
+			name: 'Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1',
+		},
+	],
+}
+
+const deliveryOpenModalButton = document.querySelector('.delivery__button')
+const deliveryCloseButton = document.querySelector('.dialog__close')
+const deliveryModal = document.querySelector('#delivery-modal')
+
+deliveryOpenModalButton.addEventListener('click', () =>
+	deliveryModal.showModal()
+)
+deliveryCloseButton.addEventListener('click', () => {
+	deliveryModal.close()
+})
+
+const deliveryModalButtons = document.querySelectorAll(
+	'.delivery__selector-button'
+)
+
+deliveryModalButtons[0].addEventListener('click', () => {
+	if (
+		deliveryModalButtons[0].classList.contains(
+			'delivery__selector-button_active'
+		)
 	)
+		return
+
+	deliveryModalButtons[0].classList.add('delivery__selector-button_active')
+	deliveryModalButtons[1].classList.remove('delivery__selector-button_active')
+
+	document.querySelector('.shipment-form').style['display'] = 'flex'
+	document.querySelector('.courier-form').style['display'] = 'none'
+})
+
+deliveryModalButtons[1].addEventListener('click', () => {
+	if (
+		deliveryModalButtons[1].classList.contains(
+			'delivery__selector-button_active'
+		)
+	)
+		return
+
+	deliveryModalButtons[1].classList.add('delivery__selector-button_active')
+	deliveryModalButtons[0].classList.remove('delivery__selector-button_active')
+
+	document.querySelector('.shipment-form').style['display'] = 'none'
+	document.querySelector('.courier-form').style['display'] = 'flex'
+})
+
+document
+	.querySelector('#delivery-modal-button')
+	.addEventListener('click', () => {})

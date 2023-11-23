@@ -1050,11 +1050,23 @@
 }
 
 .dialog {
+	flex-direction: column;
 	padding: 16px 22px 24px 22px;
 	border: 0;
 	width: 500px;
+	min-height: 408px;
 	border-radius: 16px;
 	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dialog__content {
+	min-height: 408px;
+	display: flex;
+	flex-direction: column;
+}
+
+.dialog__button {
+	max-width: 164px;
 }
 
 .dialog__title {
@@ -1083,6 +1095,131 @@
 	align-items: center;
 	background: none;
 	border: 0;
+}
+
+.delivery__selectors {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 24px;
+}
+
+.delivery-dialog__form {
+	flex: 1 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.delivery__selector-button {
+	flex: 1 0 0;
+	text-align: center;
+	border-radius: 20px;
+	border: 2px solid rgba(203, 17, 171, 0.15);
+	background: none;
+	padding: 9px 61px;
+	white-space: nowrap;
+
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 16px;
+}
+
+.delivery__selector-button_active {
+	border: 2px solid #cb11ab;
+}
+
+.delivery-dialog__addresses-title {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 16px;
+}
+
+.delivery-dialog__address {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.delivery-dialog__address-text {
+	flex: 1 0 0;
+}
+
+.round {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #00000033;
+	border-radius: 50%;
+}
+
+.round:checked {
+	position: relative;
+	background-color: #cb11ab;
+	border: 0;
+}
+.round:checked:before {
+	content: '';
+	border-radius: 50%;
+	position: absolute;
+	width: 7px;
+	height: 7px;
+	top: calc(50% - 4px);
+	left: calc(50% - 3.5px);
+	background-color: white;
+}
+
+.delivery-dialog__address-text {
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.courier-form {
+	display: none;
+}
+
+.shipment-form {
+	display: flex;
+}
+
+.shipment-rating {
+	margin-bottom: 4px;
+	display: flex;
+	align-items: center;
+}
+
+.delivery-dialog__shipment-address {
+	flex: 1 0 0;
+}
+
+.shipment-rating-text {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.shipment-image {
+	width: 12px;
+	height: 12px;
+	margin-right: 4px;
+}
+
+.shipment-rating-value {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+	margin-right: 8px;
 }
 
 @media (max-width: 1000px) {
