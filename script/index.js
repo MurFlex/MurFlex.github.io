@@ -1,13 +1,3 @@
-const selectAllCheckbox = document.querySelector('#select-all')
-
-selectAllCheckbox.addEventListener('click', e => {
-	if (selectAllCheckbox.checked) {
-		console.log(1)
-	}
-
-	handleCountChange(e)
-})
-
 const updateIds = () => {
 	let id = 0
 	productsData.forEach(product => {
@@ -116,7 +106,8 @@ const updateTotal = () => {
 		(acc, product) =>
 			acc +
 			product.amount *
-				(product.price - (product.price * product.discount) / 100), // amount * price - discount price
+				(product.price - (product.price * product.discount) / 100) *
+				product.checked, // amount * price - discount price
 		0
 	)
 
@@ -132,7 +123,7 @@ const updateTotal = () => {
 const formatTotal = (number, fixed = 0) => {
 	if (typeof number !== 'string') number = String(number.toFixed(fixed))
 
-	if (number.length < 7) return number
+	if (number.length < 4) return number
 
 	const reversedNumber = number.split('').reverse().join('')
 	const splittedNumber = reversedNumber.match(/\d{1,3}/g)
@@ -144,7 +135,17 @@ const formatTotal = (number, fixed = 0) => {
 			resultNumber + splittedNumber[i].split('').reverse().join('') + ' '
 	}
 
-	resultNumber = resultNumber.replace(/\s+$/, '') + '.' + splittedNumber[0]
+	if (number.search(/\./) !== -1)
+		resultNumber =
+			resultNumber.replace(/\s+$/, '') +
+			'.' +
+			splittedNumber[0].split('').reverse().join('')
+	else {
+		resultNumber =
+			resultNumber.replace(/\s+$/, '') +
+			' ' +
+			splittedNumber[0].split('').reverse().join('')
+	}
 
 	return resultNumber
 }
@@ -177,6 +178,7 @@ let productsData = [
 		discount: 50.33301617507136,
 		amount: 1,
 		maxAmount: 2,
+		checked: true,
 	},
 	{
 		id: 1,
@@ -185,6 +187,7 @@ let productsData = [
 		discount: 8.695474483782288,
 		amount: 200,
 		maxAmount: 999,
+		checked: true,
 	},
 	{
 		id: 2,
@@ -193,11 +196,34 @@ let productsData = [
 		discount: 48,
 		amount: 2,
 		maxAmount: 2,
+		checked: true,
 	},
 ]
 
 const createProduct = ({ name, price }) => {
 	// create paste products templates
+}
+
+const checkboxes = document.querySelectorAll('.cart .checkbox')
+
+checkboxes[0].addEventListener('change', () => {
+	for (let i = 1; i < checkboxes.length; i++) {
+		checkboxes[i].checked = checkboxes[0].checked
+	}
+
+	productsData.forEach(product => (product.checked = !product.checked))
+
+	updateTotal()
+})
+
+for (let i = 1; i < checkboxes.length; i++) {
+	checkboxes[i].addEventListener('change', () => {
+		const productName = checkboxes[i]
+			.closest('content__product')
+			.querySelector('product__name').textContent
+
+		console.log(productName)
+	})
 }
 
 const cartCounters = document.querySelectorAll('.cart .product__amount-actions') // maybe I should get products here instead to not looking for them in the loop
@@ -214,10 +240,6 @@ cartCounters.forEach(counter => {
 			.textContent
 	)
 
-	const product = productsData.filter(
-		product => product.name === productName
-	)[0]
-
 	const buttons = counter.querySelectorAll('button')
 
 	let count = counter.querySelector('.product__amount')
@@ -225,6 +247,10 @@ cartCounters.forEach(counter => {
 	const decrementButton = buttons[0]
 
 	incrementButton.addEventListener('click', () => {
+		const product = productsData.filter(
+			product => product.name === productName
+		)[0]
+
 		const buttonType = 'increment'
 		const updatedCount = updateCount(count, buttonType, product.maxAmount)
 
@@ -245,6 +271,10 @@ cartCounters.forEach(counter => {
 	})
 
 	decrementButton.addEventListener('click', () => {
+		const product = productsData.filter(
+			product => product.name === productName
+		)[0] // make a function
+
 		const buttonType = 'decrement'
 		const updatedCount = updateCount(count, buttonType, product.amount)
 

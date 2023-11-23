@@ -1434,6 +1434,7 @@
 	}
 
 	.mobile-navigation {
+		margin: 0 auto;
 		width: 320px;
 		position: sticky;
 		overflow-anchor: none;
