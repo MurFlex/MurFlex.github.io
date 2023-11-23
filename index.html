@@ -613,7 +613,11 @@
               <div class="delivery__hint delivery__hint_big">
                 <img src="images/order/price shipping.svg" alt="price-shipping" class="delivery__hint-img">
                 <div class="delivery__hint-text">
-                  Обратная доставка товаров на склад при отказе — <span class='text-green'>бесплатно</span>
+                  Обратная доставка товаров на склад при отказе — <span class='text-green'>бесплатно<p
+                      class="delivery__detail-tooltip">
+                      Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                    </p></span>
+
                 </div>
               </div>
             </div>
@@ -624,7 +628,7 @@
               <h2 class="delivery__title-text">
                 Способ оплаты
               </h2>
-              <button class="delivery__button edit-button">
+              <button id='payment-method-button' class="delivery__button edit-button">
                 Изменить
               </button>
             </div>
@@ -741,7 +745,10 @@
             <div class="delivery__hint">
               <img src="images/order/price shipping.svg" alt="price-shipping" class="delivery__hint-img">
               <div class="delivery__hint-text">
-                Обратная доставка товаров на склад при отказе — <span class='text-green'>бесплатно</span>
+                Обратная доставка товаров на склад при отказе — <span class='text-green'>бесплатно<p
+                    class="delivery__detail-tooltip">
+                    Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                  </p></span>
               </div>
             </div>
           </div>
@@ -752,7 +759,8 @@
                 <h3 class="order__detail-title">
                   Оплата картой
                 </h3>
-                <img src="images/order/edit-icon.svg" alt="edit" class="order__detail-img">
+                <img src="images/order/edit-icon.svg" alt="edit" class="order__detail-img"
+                  id='alternate-payment-button'>
               </div>
               <div class="payment__card-info mobile-hide">
                 <img src="images/order/mir.svg" alt="mir" class="payment__bank-icon">
@@ -989,6 +997,44 @@
       </form>
       <button id='delivery-modal-button' class="order__confirm dialog__button">
         Заказать
+      </button>
+    </div>
+  </dialog>
+
+  <dialog class="delivery-dialog dialog" id="payment-methods">
+    <div class='dialog__content'>
+      <div class="dialog__title">
+        <h2 class="dialog__title-text">
+          Способ оплаты
+        </h2>
+        <button class="dialog__close">
+          <img src="./images/dialog/search-close.svg" alt="close" class="dialog__close-image payment-methods-close">
+        </button>
+      </div>
+      <div class="payment__methods">
+        <label class='delivery-dialog__address'>
+          <input name='card' class='round' type="radio">
+          <img src="images/dialog/Frame 277132129.png" alt="mir" class="payment-method-image">
+          <span class='delivery-dialog__address-text'>1234 56•• •••• 1234</span>
+        </label>
+        <label class='delivery-dialog__address'>
+          <input name='card' class='round' type="radio">
+          <img src="images/dialog/Frame 277132129-1.png" alt="mir" class="payment-method-image">
+          <span class='delivery-dialog__address-text'>1234 56•• •••• 1234</span>
+        </label>
+        <label class='delivery-dialog__address'>
+          <input name='card' class='round' type="radio">
+          <img src="images/dialog/Frame 277132129-2.png" alt="mir" class="payment-method-image">
+          <span class='delivery-dialog__address-text'>1234 56•• •••• 1234</span>
+        </label>
+        <label class='delivery-dialog__address'>
+          <input name='card' class='round' type="radio">
+          <img src="images/dialog/Frame 277132129-3.png" alt="mir" class="payment-method-image">
+          <span class='delivery-dialog__address-text'>1234 56•• •••• 1234</span>
+        </label>
+      </div>
+      <button id='delivery-modal-button' class="order__confirm dialog__button">
+        Выбрать
       </button>
     </div>
   </dialog>

@@ -611,6 +611,25 @@
 	line-height: 24px;
 }
 
+.text-green:hover .delivery__detail-tooltip {
+	display: block;
+}
+
+.delivery__detail-tooltip {
+	display: none;
+	position: absolute;
+	color: black;
+	padding: 10px 16px 14px 16px;
+	max-width: 288px;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+		0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 8px;
+	top: 20px;
+	left: -116px;
+	width: 256px;
+	background-color: white;
+}
+
 .delivery__detail-address {
 	font-style: normal;
 }
@@ -942,6 +961,7 @@
 }
 
 .text-green {
+	position: relative;
 	color: #0cb477;
 	text-decoration: underline;
 	text-decoration-style: dashed;
@@ -1220,6 +1240,18 @@
 	font-weight: 400;
 	line-height: 16px;
 	margin-right: 8px;
+}
+
+.payment__methods {
+	display: flex;
+	gap: 16px;
+	flex-direction: column;
+	margin-bottom: 16px;
+	flex: 1 0 0;
+}
+
+.payment-method-image {
+	width: 30px;
 }
 
 @media (max-width: 1000px) {

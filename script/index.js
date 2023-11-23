@@ -459,10 +459,14 @@ let shipment = {
 	],
 }
 
+const deliveryAltOpenModalButton = document.querySelector('.order__detail-img')
 const deliveryOpenModalButton = document.querySelector('.delivery__button')
 const deliveryCloseButton = document.querySelector('.dialog__close')
 const deliveryModal = document.querySelector('#delivery-modal')
 
+deliveryAltOpenModalButton.addEventListener('click', () =>
+	deliveryModal.showModal()
+)
 deliveryOpenModalButton.addEventListener('click', () =>
 	deliveryModal.showModal()
 )
@@ -507,3 +511,23 @@ deliveryModalButtons[1].addEventListener('click', () => {
 document
 	.querySelector('#delivery-modal-button')
 	.addEventListener('click', () => {})
+
+const paymentModal = document.querySelector('#payment-methods')
+const paymentMethodButton = document.querySelector('#payment-method-button')
+const alternateMethodButton = document.querySelector(
+	'#alternate-payment-button'
+)
+const paymentCloseButton = document.querySelector('.payment-methods-close')
+
+paymentMethodButton.addEventListener('click', () => {
+	paymentModal.showModal()
+})
+alternateMethodButton.addEventListener('click', () => {
+	paymentModal.showModal()
+})
+paymentCloseButton.addEventListener('click', () => {
+	paymentModal.close()
+})
+alternateMethodButton.addEventListener('click', () => {
+	paymentModal.close()
+})
