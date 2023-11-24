@@ -1707,8 +1707,6 @@
 	.dialog {
 		height: 100%;
 		padding: 16px 14px;
-		position: absolute;
-		inset: 0;
 		border: 0;
 		border-radius: 0;
 	}
