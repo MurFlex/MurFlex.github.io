@@ -1703,4 +1703,25 @@
 		width: 28px;
 		height: 28px;
 	}
+
+	.dialog {
+		height: 100%;
+		padding: 16px 14px;
+		position: absolute;
+		inset: 0;
+		border: 0;
+		border-radius: 0;
+	}
+
+	.delivery__selector-button {
+		padding: 13px 19px;
+	}
+
+	.dialog__button {
+		max-width: 100%;
+	}
+
+	.dialog__content {
+		height: 100%;
+	}
 }
